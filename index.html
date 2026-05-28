@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <title>居酒屋フダヒロパート２ ご予約</title>
+  <link rel="stylesheet" href="./style.css" />
+  <!-- LIFF SDK（LINE内ブラウザで動かすために必須） -->
+  <script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+</head>
+<body>
+  <header class="app-header">
+    <h1 id="shopName">居酒屋フダヒロパート２</h1>
+    <p class="sub">ご予約フォーム</p>
+  </header>
+
+  <main id="app">
+    <!-- ローディング -->
+    <section id="loading" class="screen visible">
+      <p class="muted">読み込み中…</p>
+    </section>
+
+    <!-- ステップ1: 人数 -->
+    <section id="step-party" class="screen">
+      <h2>ご利用人数</h2>
+      <div class="grid grid-3" id="partyGrid"></div>
+      <p class="note" id="partyNote"></p>
+    </section>
+
+    <!-- ステップ2: 日付 -->
+    <section id="step-date" class="screen">
+      <h2>ご来店日</h2>
+      <input type="date" id="dateInput" />
+      <p class="note" id="dateNote"></p>
+      <div class="actions">
+        <button class="btn ghost" data-jump="step-party">戻る</button>
+        <button class="btn primary" id="toTime">次へ</button>
+      </div>
+    </section>
+
+    <!-- ステップ3: 時刻 -->
+    <section id="step-time" class="screen">
+      <h2>ご来店時刻</h2>
+      <p id="dateLabel" class="muted"></p>
+      <div class="grid grid-3" id="timeGrid"></div>
+      <div class="actions">
+        <button class="btn ghost" data-jump="step-date">戻る</button>
+      </div>
+    </section>
+
+    <!-- ステップ4: お名前・電話 -->
+    <section id="step-contact" class="screen">
+      <h2>お名前・ご連絡先</h2>
+      <label class="field-label">お名前</label>
+      <input type="text" id="name" placeholder="山田 太郎" />
+      <label class="field-label">お電話番号（当日連絡用）</label>
+      <input type="tel" id="phone" placeholder="09012345678" inputmode="numeric" />
+      <div class="actions">
+        <button class="btn ghost" data-jump="step-time">戻る</button>
+        <button class="btn primary" id="toConfirm">確認画面へ</button>
+      </div>
+    </section>
+
+    <!-- ステップ5: 確認 -->
+    <section id="step-confirm" class="screen">
+      <h2>ご予約内容の確認</h2>
+      <dl class="confirm">
+        <dt>日時</dt><dd id="confDate"></dd>
+        <dt>人数</dt><dd id="confParty"></dd>
+        <dt>お名前</dt><dd id="confName"></dd>
+        <dt>お電話</dt><dd id="confPhone"></dd>
+      </dl>
+      <div class="actions">
+        <button class="btn ghost" data-jump="step-contact">戻る</button>
+        <button class="btn primary" id="submit">予約を確定する</button>
+      </div>
+      <p id="submitError" class="error"></p>
+    </section>
+
+    <!-- ステップ6: 完了 -->
+    <section id="step-done" class="screen">
+      <h2>ご予約が完了しました🍶</h2>
+      <dl class="confirm" id="doneSummary"></dl>
+      <p class="note">ご来店をお待ちしております。</p>
+      <div class="actions">
+        <button class="btn primary" id="closeBtn">閉じる</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <p>居酒屋フダヒロパート２ / お問い合わせ <a id="telFoot" href="#">店舗</a></p>
+  </footer>
+
+  <!-- 設定（ここを自分の値に書き換える） -->
+  <script>
+    window.APP_CONFIG = {
+      // LIFFアプリのID（LINE Developersコンソールで作成して貼り付け）
+      LIFF_ID: 'ここにLIFF_IDを貼り付け',
+      // GAS Web Appのデプロイ後URL（https://script.google.com/macros/s/.../exec）
+      GAS_URL: 'ここにGASのウェブアプリURLを貼り付け'
+    };
+  </script>
+  <script src="./app.js"></script>
+</body>
+</html>

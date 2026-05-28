@@ -1,0 +1,127 @@
+:root {
+  --bg: #faf7f2;
+  --card: #ffffff;
+  --ink: #1f1c19;
+  --muted: #7a716a;
+  --primary: #b3402f;        /* 居酒屋らしい朱赤系 */
+  --primary-ink: #ffffff;
+  --line: #e7e1d6;
+  --error: #b14b3d;
+  --full: #d9d4ca;
+  --radius: 10px;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN",
+               "Helvetica Neue", Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+a { color: var(--primary); }
+
+.app-header {
+  padding: 18px 20px 12px;
+  background: linear-gradient(135deg, #b3402f 0%, #872f22 100%);
+  color: #fff;
+}
+.app-header h1 { font-size: 20px; margin: 0; font-weight: 600; letter-spacing: 0.04em; }
+.app-header .sub { font-size: 12px; margin: 2px 0 0; opacity: 0.85; }
+
+main { padding: 16px 16px 32px; max-width: 480px; margin: 0 auto; }
+
+.screen { display: none; }
+.screen.visible { display: block; }
+
+h2 { font-size: 17px; margin: 12px 0 14px; }
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 14px;
+  margin-bottom: 12px;
+}
+
+.btn {
+  display: block;
+  width: 100%;
+  padding: 14px;
+  border: 1px solid var(--line);
+  background: #fff;
+  border-radius: var(--radius);
+  font-size: 15px;
+  color: var(--ink);
+  cursor: pointer;
+  margin: 8px 0 0;
+}
+.btn.primary { background: var(--primary); color: var(--primary-ink); border-color: var(--primary); }
+.btn.ghost { background: transparent; }
+.btn:disabled { opacity: 0.5; }
+
+.btn-tile {
+  padding: 14px 8px;
+  border: 1px solid var(--line);
+  background: #fff;
+  border-radius: var(--radius);
+  font-size: 15px;
+  cursor: pointer;
+  color: var(--ink);
+}
+.btn-tile:disabled, .btn-tile.full {
+  background: var(--full);
+  color: var(--muted);
+  text-decoration: line-through;
+  cursor: not-allowed;
+}
+
+.grid { display: grid; gap: 8px; }
+.grid-1 { grid-template-columns: 1fr; }
+.grid-2 { grid-template-columns: 1fr 1fr; }
+.grid-3 { grid-template-columns: 1fr 1fr 1fr; }
+
+.actions { display: flex; gap: 8px; margin-top: 16px; }
+.actions .btn { margin: 0; flex: 1; }
+
+.field-label {
+  display: block;
+  font-size: 13px;
+  color: var(--muted);
+  margin: 14px 0 4px;
+}
+
+input[type="tel"],
+input[type="text"],
+input[type="date"] {
+  width: 100%;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  font-size: 16px;       /* 16px未満だとiOSで自動ズームするため16pxにする */
+  background: #fff;
+  color: var(--ink);
+}
+
+.muted { color: var(--muted); font-size: 13px; }
+.note { color: var(--muted); font-size: 12px; margin-top: 10px; }
+.error { color: var(--error); font-size: 13px; margin-top: 10px; }
+
+.confirm {
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  gap: 6px 12px;
+  background: #fff;
+  padding: 14px;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+}
+.confirm dt { color: var(--muted); font-size: 13px; }
+.confirm dd { margin: 0; font-size: 14px; }
+
+.foot { text-align: center; padding: 16px; color: var(--muted); font-size: 12px; }
